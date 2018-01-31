@@ -1,5 +1,8 @@
 const path = require('path')
 
+// todo make individual configs
+process.env.NODE_ENV = 'development'
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -9,13 +12,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
+        loader: require.resolve('babel-loader'),
+        options: {
+          cacheDirectory: true,
+          presets: [require.resolve('babel-preset-react-app')],
         },
       },
     ],
