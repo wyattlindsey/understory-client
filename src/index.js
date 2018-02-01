@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './components/App'
+import App from './components/App/index'
 
 const Root = props => <App {...props} />
 

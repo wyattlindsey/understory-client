@@ -1,4 +1,5 @@
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 // todo make individual configs
 process.env.NODE_ENV = 'development'
@@ -7,7 +8,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
   },
   module: {
     rules: [
@@ -22,4 +23,16 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: './public/index.html',
+        to: '../dist/index.html',
+      },
+      {
+        from: './public/favicon.ico',
+        to: '../dist/favicon.ico'
+      }
+    ]),
+  ],
 }
