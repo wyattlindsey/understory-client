@@ -36,6 +36,7 @@
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.9",
     "postcss": "^6.0.16",
+    "postcss-advanced-variables": "^2.3.0",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.0.10",
     "postcss-nested": "^3.0.0",

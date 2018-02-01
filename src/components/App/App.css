@@ -1,3 +1,6 @@
+@import 'styles/variables';
+
 .test {
-  font-size: 2rem;
+  composes: userselect-none from 'styles/box.css';
+  font-size: $test-font-size;
 }
