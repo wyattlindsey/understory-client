@@ -25,6 +25,7 @@
     "three": "^0.89.0"
   },
   "devDependencies": {
+    "autoprefixer": "^7.2.5",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -33,6 +34,14 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-app": "^3.1.1",
     "copy-webpack-plugin": "^4.3.1",
+    "css-loader": "^0.28.9",
+    "postcss": "^6.0.16",
+    "postcss-flexbugs-fixes": "^3.3.0",
+    "postcss-loader": "^2.0.10",
+    "postcss-nested": "^3.0.0",
+    "postcss-partial-import": "^4.1.0",
+    "react-css-modules": "^4.7.1",
+    "style-loader": "^0.20.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
   }

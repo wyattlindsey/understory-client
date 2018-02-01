@@ -1,9 +1,12 @@
 import React from 'react'
 
+import cssModules from 'react-css-modules'
+import styles from './App.css'
+
 class App extends React.Component {
   render() {
-    return <div>Hello Understory!!!</div>
+    return <div styleName="test">Hello Understory!!!</div>
   }
 }
 
-export default App
+export default cssModules(App, styles)

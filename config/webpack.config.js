@@ -21,6 +21,22 @@ module.exports = {
           presets: [require.resolve('babel-preset-react-app')],
         },
       },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
+          },
+          require.resolve('postcss-loader'),
+        ],
+      },
     ],
   },
   plugins: [
@@ -31,8 +47,14 @@ module.exports = {
       },
       {
         from: './public/favicon.ico',
-        to: '../dist/favicon.ico'
-      }
+        to: '../dist/favicon.ico',
+      },
     ]),
   ],
+  resolve: {
+    modules: [
+      path.resolve(__dirname, '../src'),
+      path.resolve(__dirname, '../node_modules'),
+    ],
+  },
 }
