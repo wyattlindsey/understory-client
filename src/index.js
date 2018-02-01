@@ -1,9 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
 
+import Store from 'store'
 import App from 'components/App'
 
-const Root = props => <App {...props} />
+import reducers from 'reducers'
+
+const store = Store.init(reducers)
+
+const Root = props => (
+  <Provider store={store}>
+    <App {...props} />
+  </Provider>
+)
 
 if (typeof window !== 'undefined') {
   ReactDOM.render(Root(), document.getElementById('root'))
