@@ -14,7 +14,7 @@ module.exports = (() => {
   console.log('port', port)
   app.use(logger(isProduction ? 'combined' : 'dev'))
 
-  app.use(favicon(path.resolve(__dirname, '../dist', 'favicon.ico')))
+  app.use(favicon(path.resolve(__dirname, '../dist/favicon.ico')))
 
   app.use('/', express.static(path.resolve(__dirname, '../dist')))
 
