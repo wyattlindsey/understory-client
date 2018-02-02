@@ -2,6 +2,7 @@
   "name": "understory-client",
   "version": "1.0.0",
   "description": "frontend for understory application",
+  "main": "server/index.js",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "heroku-postbuild": "webpack --config config/webpack.config.js",
