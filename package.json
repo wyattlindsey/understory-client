@@ -6,9 +6,8 @@
   "main": "server/index.js",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
-    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false",
-    "heroku-postbuild":
-      "webpack --config config/webpack.config.js; export NPM_CONFIG_PRODUCTION=true",
+    "heroku-prebuild": "npm install --only=dev",
+    "heroku-postbuild": "webpack --config config/webpack.config.js",
     "serve:dev": "webpack-dev-server --config config/webpack.config.js",
     "serve:prod": "node ./server/index.js",
     "test": "jest"
