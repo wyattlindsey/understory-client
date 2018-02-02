@@ -10,6 +10,7 @@
     "heroku-postbuild": "webpack --config config/webpack.config.js",
     "serve:dev": "webpack-dev-server --config config/webpack.config.js",
     "serve:prod": "node ./server/index.js",
+    "start": "node ./server/index.js",
     "test": "jest"
   },
   "repository": {
