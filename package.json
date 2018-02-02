@@ -4,6 +4,7 @@
   "description": "frontend for understory application",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
+    "heroku-postbuild": "webpack --config config/webpack.config.js",
     "serve:dev": "webpack-dev-server --config config/webpack.config.js",
     "serve:prod": "node ./server/index.js",
     "test": "jest"
