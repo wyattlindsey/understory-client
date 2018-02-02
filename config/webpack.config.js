@@ -1,5 +1,6 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // todo make individual configs
 process.env.NODE_ENV = 'development'
@@ -24,18 +25,25 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: [
-          require.resolve('style-loader'),
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-              modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+        loader: ExtractTextPlugin.extract({
+          fallback: require.resolve('style-loader'),
+          use: [
+            {
+              loader: require.resolve('css-loader'),
+              options: {
+                importLoaders: 1,
+                modules: true,
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                // todo use the below for prod build
+                // localIdentName: '[hash:base64]',
+                // minimize: true,
+                // modules: true,
+                // sourceMap: true,
+              },
             },
-          },
-          require.resolve('postcss-loader'),
-        ],
+            require.resolve('postcss-loader'),
+          ],
+        }),
       },
     ],
   },
@@ -50,6 +58,7 @@ module.exports = {
         to: '../../favicon.ico',
       },
     ]),
+    new ExtractTextPlugin('../css/[name].bundle.css'),
   ],
   resolve: {
     modules: [
