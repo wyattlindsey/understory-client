@@ -8,7 +8,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist/assets/js'),
   },
   module: {
     rules: [
@@ -43,11 +43,11 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: './public/index.html',
-        to: '../dist/index.html',
+        to: '../../index.html',
       },
       {
         from: './public/favicon.ico',
-        to: '../dist/favicon.ico',
+        to: '../../favicon.ico',
       },
     ]),
   ],
