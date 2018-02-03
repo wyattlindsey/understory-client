@@ -3,6 +3,7 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // todo make individual configs
 process.env.NODE_ENV = 'development'
@@ -25,6 +26,30 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.css$/,
+          /\.json$/,
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/,
+        ],
+        loader: require.resolve('file-loader'),
+        options: {
+          name: 'assets/media/[name].[hash:8].[ext]',
+        },
+      },
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: require.resolve('url-loader'),
+        options: {
+          limit: 10000,
+          name: 'assets/media/[name].[hash:8].[ext]',
+        },
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -69,44 +94,17 @@ module.exports = {
           },
         ],
       },
-      {
-        exclude: [
-          /\.html$/,
-          /\.(js|jsx)$/,
-          /\.css$/,
-          /\.json$/,
-          /\.bmp$/,
-          /\.gif$/,
-          /\.jpe?g$/,
-          /\.png$/,
-        ],
-        loader: require.resolve('file-loader'),
-        options: {
-          name: 'assets/media/[name].[hash:8].[ext]',
-        },
-      },
-      {
-        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: require.resolve('url-loader'),
-        options: {
-          limit: 10000,
-          name: 'assets/media/[name].[hash:8].[ext]',
-        },
-      },
     ],
   },
   plugins: [
     new CopyWebpackPlugin([
-      {
-        from: './public/index.html',
-        to: '../../index.html',
-      },
       {
         from: './public/favicon.ico',
         to: '../../favicon.ico',
       },
     ]),
     new ExtractTextPlugin('../css/[name].bundle.css'),
+    new HtmlWebpackPlugin({ template: 'public/index.html' }),
   ],
   resolve: {
     modules: [
