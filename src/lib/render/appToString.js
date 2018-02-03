@@ -1,7 +1,9 @@
 import { renderToString } from 'react-dom/server'
 
-import Root from '../index'
+import Root from 'index'
 
-export const appToString = (location, context) => {
+const appToString = (location, context) => {
   return renderToString(Root({ location, context }))
 }
+
+export default appToString
