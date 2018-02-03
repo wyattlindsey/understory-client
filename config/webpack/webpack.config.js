@@ -6,8 +6,16 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 process.env.NODE_ENV = 'development'
 
 module.exports = {
+  devServer: {
+    contentBase: path.resolve(__dirname, '../../dist'),
+    hot: true,
+  },
   devtool: 'cheap-module-source-map',
-  entry: path.resolve(__dirname, '../../src/index.js'),
+  entry: [
+    require.resolve('react-hot-loader/patch'),
+    require.resolve('react-dev-utils/webpackHotDevClient'),
+    path.resolve(__dirname, '../../src/index.js'),
+  ],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '../../dist/assets/js'),
