@@ -2,14 +2,16 @@
   "name": "understory-client",
   "version": "1.0.0",
   "description": "frontend for understory application",
-  "engines": { "node": ">=6.9.1" },
+  "engines": {
+    "node": ">=6.9.1"
+  },
   "main": "server/index.js",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "heroku-prebuild": "npm install --only=dev",
     "heroku-postbuild": "webpack --config config/webpack.config.js",
     "serve:dev": "webpack-dev-server --config config/webpack.config.js",
-    "serve:prod": "node ./server/index.js",
+    "serve:prod": "nodemon --watch server ./server/index.js",
     "start": "node ./server/index.js",
     "test": "jest"
   },
@@ -48,6 +50,7 @@
     "copy-webpack-plugin": "^4.3.1",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
+    "nodemon": "^1.14.12",
     "postcss": "^6.0.16",
     "postcss-advanced-variables": "^2.3.0",
     "postcss-flexbugs-fixes": "^3.3.0",
