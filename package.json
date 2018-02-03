@@ -7,11 +7,12 @@
   },
   "main": "server/index.js",
   "scripts": {
-    "build": "webpack --config config/webpack/webpack.config.js",
-    "heroku-postbuild": "webpack --config config/webpack/webpack.config.js",
-    "serve:dev": "webpack-dev-server --config config/webpack/webpack.config.js",
+    "build": "webpack --config config/webpack/client.js",
+    "build:server": "webpack -- config config/webpack/server.js",
+    "heroku-postbuild": "webpack --config config/webpack/client.js",
     "serve:prod": "nodemon ./server/index.js",
     "start": "node ./server/index.js",
+    "start:dev": "webpack-dev-server --config config/webpack/client.js",
     "test": "jest"
   },
   "repository": {
