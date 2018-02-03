@@ -1,3 +1,5 @@
+'use strict'
+
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -54,6 +56,42 @@ module.exports = {
             require.resolve('postcss-loader'),
           ],
         }),
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: require.resolve('handlebars-loader'),
+            options: {
+              extensions: ['.html'],
+              partialDirs: [path.resolve(__dirname, '../../src/partials')],
+            },
+          },
+        ],
+      },
+      {
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.css$/,
+          /\.json$/,
+          /\.bmp$/,
+          /\.gif$/,
+          /\.jpe?g$/,
+          /\.png$/,
+        ],
+        loader: require.resolve('file-loader'),
+        options: {
+          name: 'assets/media/[name].[hash:8].[ext]',
+        },
+      },
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: require.resolve('url-loader'),
+        options: {
+          limit: 10000,
+          name: 'assets/media/[name].[hash:8].[ext]',
+        },
       },
     ],
   },
