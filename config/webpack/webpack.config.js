@@ -6,10 +6,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 process.env.NODE_ENV = 'development'
 
 module.exports = {
-  entry: './src/index.js',
+  devtool: 'cheap-module-source-map',
+  entry: path.resolve(__dirname, '../../src/index.js'),
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../dist/assets/js'),
+    path: path.resolve(__dirname, '../../dist/assets/js'),
   },
   module: {
     rules: [
@@ -62,8 +63,8 @@ module.exports = {
   ],
   resolve: {
     modules: [
-      path.resolve(__dirname, '../src'),
-      path.resolve(__dirname, '../node_modules'),
+      path.resolve(__dirname, '../../src'),
+      path.resolve(__dirname, '../../node_modules'),
     ],
   },
 }

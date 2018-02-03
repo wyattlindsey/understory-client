@@ -7,10 +7,10 @@
   },
   "main": "server/index.js",
   "scripts": {
-    "build": "webpack --config config/webpack.config.js",
+    "build": "webpack --config config/webpack/webpack.config.js",
     "heroku-prebuild": "npm install --only=dev",
-    "heroku-postbuild": "webpack --config config/webpack.config.js",
-    "serve:dev": "webpack-dev-server --config config/webpack.config.js",
+    "heroku-postbuild": "webpack --config config/webpack/webpack.config.js",
+    "serve:dev": "webpack-dev-server --config config/webpack/webpack.config.js",
     "serve:prod": "nodemon --watch server ./server/index.js",
     "start": "node ./server/index.js",
     "test": "jest"
