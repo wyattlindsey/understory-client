@@ -6,7 +6,6 @@ module.exports = {
   },
   devtool: 'source-map',
   entry: [
-    require.resolve('../polyfills'),
-    `${paths.subApps}/index/src/server/index.js`,
+    require.resolve('../polyfills')
   ],
 }
