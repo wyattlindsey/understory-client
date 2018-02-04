@@ -4,11 +4,13 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 // todo make individual configs
 process.env.NODE_ENV = 'development'
 
 module.exports = {
+  context: path.resolve(__dirname, '../../src'),
   devServer: {
     contentBase: path.resolve(__dirname, '../../dist'),
     hot: true,
@@ -18,11 +20,11 @@ module.exports = {
     require.resolve('../polyfills'),
     require.resolve('react-hot-loader/patch'),
     require.resolve('react-dev-utils/webpackHotDevClient'),
-    path.resolve(__dirname, '../../src/index.js'),
+    'index.js',
   ],
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, '../../dist/assets/js'),
+    filename: 'assets/js/bundle.js',
+    path: path.resolve(__dirname, '../../dist'),
   },
   module: {
     rules: [
@@ -99,12 +101,13 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: './public/favicon.ico',
+        from: '../public/favicon.ico',
         to: '../../favicon.ico',
       },
     ]),
-    new ExtractTextPlugin('../css/[name].bundle.css'),
-    new HtmlWebpackPlugin({ template: 'public/index.html' }),
+    new ExtractTextPlugin('assets/css/[name].bundle.css'),
+    new HtmlWebpackPlugin({ template: '../public/index.html' }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
     modules: [

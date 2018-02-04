@@ -3,6 +3,7 @@
 const chalk = require('chalk')
 const express = require('express')
 const favicon = require('serve-favicon')
+const hbs = require('hbs')
 const logger = require('morgan')
 const path = require('path')
 const render = require('../private/server').appToString
@@ -16,15 +17,21 @@ module.exports = (() => {
 
   app.use(favicon(path.resolve(__dirname, '../dist/favicon.ico')))
 
+  app.set('views', paths.build)
+  app.set('view engine', 'html')
+  app.engine('html', hbs.__express)
+
+  hbs.registerPartials(path.resolve(__dirname, '../src/partials'))
+
   // app.use('/', express.static(path.resolve(__dirname, '../dist')))
 
-  app.get('/', (req, res, next) => {
-    try {
-      res.render('index.html')
-    } catch (e) {
-      next(e)
-    }
-  })
+  // app.get('/', (req, res, next) => {
+  //   try {
+  //     res.render('index.html')
+  //   } catch (e) {
+  //     next(e)
+  //   }
+  // })
 
   /* eslint-disable no-console */
   app.listen(port, () => {
