@@ -11,15 +11,9 @@ process.env.NODE_ENV = 'development'
 
 module.exports = {
   context: path.resolve(__dirname, '../../src'),
-  devServer: {
-    contentBase: path.resolve(__dirname, '../../dist'),
-    hot: true,
-  },
   devtool: 'cheap-module-source-map',
   entry: [
     require.resolve('../polyfills'),
-    require.resolve('react-hot-loader/patch'),
-    require.resolve('react-dev-utils/webpackHotDevClient'),
     'index.js',
   ],
   output: {
@@ -107,7 +101,6 @@ module.exports = {
     ]),
     new ExtractTextPlugin('assets/css/[name].bundle.css'),
     new HtmlWebpackPlugin({ template: '../public/index.html' }),
-    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
     modules: [
