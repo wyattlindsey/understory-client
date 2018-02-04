@@ -4,6 +4,13 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
+
+const HTML_SORT_CHUNKS = (a, b) => {
+  if (a.names[0] === 'common') return -1
+  if (b.names[0] === 'common') return 1
+  return 0
+}
 
 // todo make individual configs
 process.env.NODE_ENV = 'production'
@@ -100,13 +107,12 @@ module.exports = {
     ],
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: '../public/favicon.ico',
-        to: '../dist/favicon.ico',
-      },
-    ]),
-    new ExtractTextPlugin('assets/css/[name].bundle.css'),
-    new HtmlWebpackPlugin({ template: '../public/index.html' }),
+    new HtmlWebpackPlugin({
+      chunks: ['common', 'index'],
+      chunksSortMode: HTML_SORT_CHUNKS,
+      filename: path.resolve(__dirname, '../../dist/index.html'),
+      inject: true,
+      template: path.resolve(__dirname, '../../public/index.html'),
+    }),
   ],
 }

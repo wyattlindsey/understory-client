@@ -8,10 +8,9 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <title>Understory</title>
     {{> fonts}}
-    <link href="/assets/css/main.bundle.css" rel="stylesheet">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">{{{htmlWebpackPlugin.options.app}}}</div>
   </body>
 </html>

@@ -6,6 +6,7 @@ const favicon = require('serve-favicon')
 const hbs = require('hbs')
 const logger = require('morgan')
 const path = require('path')
+const applyTemplateValues = require('../src/lib/render/applyTemplateValues')
 // const render = require('../private/server').appToString
 
 const app = express()
@@ -27,7 +28,7 @@ module.exports = (() => {
 
   app.get('/', (req, res, next) => {
     try {
-      res.render('index.html')
+      res.render('index', { app: {} })
     } catch (e) {
       next(e)
     }

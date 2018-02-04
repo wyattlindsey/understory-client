@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // todo make individual configs
-process.env.NODE_ENV = 'development'
+process.env.NODE_ENV = 'production'
 
 module.exports = {
   context: path.resolve(__dirname, '../../src'),
