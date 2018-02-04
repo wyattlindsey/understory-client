@@ -1,20 +1,21 @@
 'use strict'
 
 const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // todo make individual configs
 process.env.NODE_ENV = 'production'
 
 module.exports = {
+  context: path.resolve(__dirname, '../../src'),
   target: 'node',
   node: {
     __dirname: true,
   },
   devtool: 'source-map',
-  entry: [
-    require.resolve('../polyfills'),
-    path.resolve(__dirname, '../../src/lib/render/appToString.js'),
-  ],
+  entry: [require.resolve('../polyfills'), 'lib/render/appToString.js'],
   output: {
     filename: 'server.js',
     path: path.resolve(__dirname, '../../private'),
@@ -59,6 +60,7 @@ module.exports = {
       },
       {
         test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         loader: require.resolve('babel-loader'),
         options: {
           presets: [require.resolve('babel-preset-react-app')],
@@ -73,11 +75,38 @@ module.exports = {
               importLoaders: 1,
               modules: true,
               localIdentName: '[hash:base64]',
+              // todo use the below for prod build
+              // localIdentName: '[hash:base64]',
+              // minimize: true,
+              // modules: true,
+              // sourceMap: true,
             },
           },
           require.resolve('postcss-loader'),
         ],
       },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: require.resolve('handlebars-loader'),
+            options: {
+              extensions: ['.html'],
+              partialDirs: [path.resolve(__dirname, '../../src/partials')],
+            },
+          },
+        ],
+      },
     ],
   },
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: '../public/favicon.ico',
+        to: '../dist/favicon.ico',
+      },
+    ]),
+    new ExtractTextPlugin('assets/css/[name].bundle.css'),
+    new HtmlWebpackPlugin({ template: '../public/index.html' }),
+  ],
 }

@@ -4,7 +4,6 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
 
 // todo make individual configs
 process.env.NODE_ENV = 'development'
@@ -96,7 +95,7 @@ module.exports = {
     new CopyWebpackPlugin([
       {
         from: '../public/favicon.ico',
-        to: '../../favicon.ico',
+        to: '../dist/favicon.ico',
       },
     ]),
     new ExtractTextPlugin('assets/css/[name].bundle.css'),
