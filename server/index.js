@@ -7,7 +7,7 @@ const hbs = require('hbs')
 const logger = require('morgan')
 const path = require('path')
 const applyTemplateValues = require('../src/lib/render/applyTemplateValues')
-// const render = require('../private/server').appToString
+const render = require('../private/server').appToString
 
 const app = express()
 const port = process.env.PORT || '3000'
@@ -24,15 +24,22 @@ module.exports = (() => {
 
   hbs.registerPartials(path.resolve(__dirname, '../src/partials'))
 
-  // app.use('/', express.static(path.resolve(__dirname, '../dist')))
-
   app.get('/', (req, res, next) => {
+    const baseUrl = `/${req.url.split('/')[1].split('?')[0]}`
     try {
-      res.render('index', { app: {} })
+      res.render(
+        'index',
+        applyTemplateValues(
+          Object.assign({ app: render(req.url, {}), baseUrl }, res.locals)
+        )
+      )
     } catch (e) {
+      console.error(e)
       next(e)
     }
   })
+
+  app.use('/', express.static(path.resolve(__dirname, '../dist')))
 
   /* eslint-disable no-console */
   app.listen(port, () => {

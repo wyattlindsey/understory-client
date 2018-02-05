@@ -17,7 +17,6 @@ export const configureStore = (state = initialState, reducers) => {
               typeof value !== 'object' ||
               value === null ||
               typeof value === 'undefined' ||
-              value instanceof File ||
               value instanceof Promise
             )
           },
