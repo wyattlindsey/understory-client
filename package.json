@@ -9,7 +9,7 @@
   "scripts": {
     "build": "webpack --config config/webpack/client.js",
     "build:server": "webpack --config config/webpack/server.js",
-    "heroku-postbuild": "webpack --config config/webpack/client.js",
+    "heroku-postbuild": "webpack --config config/webpack/client.js && webpack --config config/webpack/server.js",
     "serve:prod": "nodemon ./server/index.js",
     "start": "node ./server/index.js",
     "start:dev": "webpack-dev-server --config config/webpack/client.js",
