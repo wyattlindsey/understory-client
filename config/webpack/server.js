@@ -29,9 +29,6 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.(js|jsx)$/,
-      },
-      {
         exclude: [
           /\.html$/,
           /\.(js|jsx)$/,
@@ -71,7 +68,7 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: true,
-              localIdentName: '[hash:base64]',
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
               // todo use the below for prod build
               // localIdentName: '[hash:base64]',
               // minimize: true,
@@ -82,18 +79,7 @@ module.exports = {
           require.resolve('postcss-loader'),
         ],
       },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: require.resolve('handlebars-loader'),
-            options: {
-              extensions: ['.html'],
-              partialDirs: [path.resolve(__dirname, '../../src/partials')],
-            },
-          },
-        ],
-      },
     ],
   },
+  plugins: [],
 }

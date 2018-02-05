@@ -4,17 +4,17 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin')
 
 // todo make individual configs
-process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'development'
+
+const isProduction = process.env.NODE_ENV === 'production'
 
 module.exports = {
   context: path.resolve(__dirname, '../../src'),
   devtool: 'cheap-module-source-map',
-  entry: [
-    require.resolve('../polyfills'),
-    'index.js',
-  ],
+  entry: [require.resolve('../polyfills'), 'index.js'],
   output: {
     filename: 'assets/js/bundle.js',
     path: path.resolve(__dirname, '../../dist'),
@@ -99,7 +99,11 @@ module.exports = {
       },
     ]),
     new ExtractTextPlugin('assets/css/[name].bundle.css'),
-    new HtmlWebpackPlugin({ template: '../public/index.html' }),
+    new HtmlWebpackPlugin({
+      excludeAssets: [/(.*).js$/],
+      template: '../public/index.html',
+    }),
+    new HtmlWebpackExcludeAssetsPlugin(),
   ],
   resolve: {
     modules: [

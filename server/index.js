@@ -26,13 +26,15 @@ module.exports = (() => {
 
   app.get('/', (req, res, next) => {
     const baseUrl = `/${req.url.split('/')[1].split('?')[0]}`
+    let markup
+
     try {
-      res.render(
-        'index',
-        applyTemplateValues(
-          Object.assign({ app: render(req.url, {}), baseUrl }, res.locals)
-        )
-      )
+      markup = render(req.url, {})
+      res.render('index', {
+        isDev: process.env.NODE_ENV === 'development',
+        isProd: process.env.NODE_ENV === 'production',
+        markup,
+      })
     } catch (e) {
       console.error(e)
       next(e)
