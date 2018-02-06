@@ -2,8 +2,11 @@
 
 const path = require('path')
 
-// todo make individual configs
-// process.env.NODE_ENV = 'production'
+const isProduction = process.env.NODE_ENV === 'production'
+console.log('isProduction', isProduction)
+const cssLocalName = isProduction
+  ? '[hash:base64]'
+  : '[path][name]__[local]--[hash:base64:5]'
 
 module.exports = {
   context: path.resolve(__dirname, '../../src'),
@@ -68,12 +71,9 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
-              // todo use the below for prod build
-              // localIdentName: '[hash:base64]',
-              // minimize: true,
-              // modules: true,
-              // sourceMap: true,
+              localIdentName: cssLocalName,
+              minimize: isProduction,
+              sourceMap: !isProduction,
             },
           },
           require.resolve('postcss-loader'),
