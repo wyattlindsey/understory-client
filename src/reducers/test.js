@@ -2,7 +2,7 @@ import { createReducer } from 'lib/redux/reducer'
 import { ACTIONS as TEST_ACTIONS } from 'actions/test'
 
 const initialState = {
-  testValue: null,
+  testValue: 2,
 }
 
 const actions = {
