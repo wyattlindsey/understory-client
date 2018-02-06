@@ -1,19 +1,24 @@
 'use strict'
 
 const path = require('path')
+const hbs = require('hbs')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin')
 
 const isProduction = process.env.NODE_ENV === 'production'
-console.log('isProduction', isProduction)
 const cssLocalName = isProduction
   ? '[hash:base64]'
   : '[path][name]__[local]--[hash:base64:5]'
 
 module.exports = {
   context: path.resolve(__dirname, '../../src'),
+  devServer: {
+    contentBase: path.resolve(__dirname, '../../dist'),
+    compress: true,
+    port: 3000,
+  },
   devtool: 'cheap-module-source-map',
   entry: [require.resolve('../polyfills'), 'index.js'],
   output: {
@@ -98,7 +103,7 @@ module.exports = {
     ]),
     new ExtractTextPlugin('assets/css/[name].bundle.css'),
     new HtmlWebpackPlugin({
-      excludeAssets: [/(.*).js$/],
+      excludeAssets: isProduction && [/(.*).js$/],
       template: '../public/index.html',
     }),
     new HtmlWebpackExcludeAssetsPlugin(),

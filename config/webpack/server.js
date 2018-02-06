@@ -3,7 +3,6 @@
 const path = require('path')
 
 const isProduction = process.env.NODE_ENV === 'production'
-console.log('isProduction', isProduction)
 const cssLocalName = isProduction
   ? '[hash:base64]'
   : '[path][name]__[local]--[hash:base64:5]'
