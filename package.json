@@ -7,12 +7,17 @@
   },
   "main": "server/index.js",
   "scripts": {
-    "build": "webpack --config config/webpack/client.js",
+    "build": "yarn build:client; yarn build:server",
+    "build:prod": "export NODE_ENV=production; yarn build",
+    "build:client": "webpack --config config/webpack/client.js",
     "build:server": "webpack --config config/webpack/server.js",
-    "heroku-postbuild": "webpack --config config/webpack/client.js && webpack --config config/webpack/server.js",
-    "serve:prod": "nodemon ./server/index.js",
-    "start": "node ./server/index.js",
-    "start:dev": "webpack-dev-server --config config/webpack/client.js",
+    "serve:dev": "export NODE_ENV=development; nodemon ./server/index.js",
+    "serve:prod": "export NODE_ENV=production; node ./server/index.js",
+    "start": "yarn serve:prod",
+    "start:dev":
+      "export NODE_ENV=development; webpack-dev-server --config config/webpack/client.js",
+    "start:prod": "export NODE_ENV=production; yarn build; yarn serve:prod",
+    "heroku-postbuild": "yarn build:prod",
     "test": "jest"
   },
   "repository": {

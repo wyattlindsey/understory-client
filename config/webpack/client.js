@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin')
 
 // todo make individual configs
-process.env.NODE_ENV = 'development'
+// process.env.NODE_ENV = 'development'
 
 const isProduction = process.env.NODE_ENV === 'production'
 

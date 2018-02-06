@@ -3,7 +3,7 @@
 const path = require('path')
 
 // todo make individual configs
-process.env.NODE_ENV = 'production'
+// process.env.NODE_ENV = 'production'
 
 module.exports = {
   context: path.resolve(__dirname, '../../src'),
