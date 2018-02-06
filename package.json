@@ -9,8 +9,10 @@
   "scripts": {
     "build": "yarn build:client; yarn build:server",
     "build:prod": "export NODE_ENV=production; yarn build",
-    "build:client": "webpack --config config/webpack/client.js",
-    "build:server": "webpack --config config/webpack/server.js",
+    "build:client":
+      "export NODE_ENV=production; webpack --config config/webpack/client.js",
+    "build:server":
+      "export NODE_ENV=production; webpack --config config/webpack/server.js",
     "serve:dev": "export NODE_ENV=development; nodemon ./server/index.js",
     "serve:prod": "export NODE_ENV=production; node ./server/index.js",
     "start": "yarn serve:prod",
