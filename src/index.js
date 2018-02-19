@@ -9,6 +9,8 @@ import reducers from 'reducers'
 
 const store = Store.init(reducers)
 
+console.log('store', store)
+
 const Root = props => (
   <Provider store={store}>
     <App {...props} />
@@ -18,11 +20,11 @@ const Root = props => (
 if (typeof window !== 'undefined') {
   ReactDOM.render(Root(), document.getElementById('root'))
 
-  if (module.hot) {
-    module.hot.accept('components/App', () => {
-      ReactDOM.render(Root(), document.getElementById('root'))
-    })
-  }
+  // if (module.hot) {
+  //   module.hot.accept('components/App', () => {
+  //     ReactDOM.render(Root(), document.getElementById('root'))
+  //   })
+  // }
 }
 
 export default Root

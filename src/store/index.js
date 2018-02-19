@@ -43,6 +43,10 @@ class Store {
     return this.store
   }
 
+  getHistory() {
+    return history
+  }
+
   dispatch(...args) {
     return this.store.dispatch(...args)
   }
