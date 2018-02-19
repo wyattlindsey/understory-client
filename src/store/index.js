@@ -2,7 +2,11 @@ import { createLogger } from 'redux-logger'
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import immutableStateInvariant from 'redux-immutable-state-invariant'
 
-const initialState = {}
+export const initialState = {
+  test: {
+    testValue: 43
+  }
+}
 
 export const configureStore = (state = initialState, reducers) => {
   const middlewares = []

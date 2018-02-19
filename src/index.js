@@ -2,14 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
-import Store from 'store'
+import Store, { initialState } from 'store'
 import App from 'components/App'
 
 import reducers from 'reducers'
 
-const store = Store.init(reducers)
-
-console.log('store', store)
+// doesn't initialize on server-side render
+const store = Store.init(reducers) || { getState: () => initialState }
 
 const Root = props => (
   <Provider store={store}>
