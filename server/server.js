@@ -1,13 +1,14 @@
 'use strict'
 
-const chalk = require('chalk')
+import chalk from 'chalk'
 import express from 'express'
-const favicon = require('serve-favicon')
-const hbs = require('hbs')
-const logger = require('morgan')
-const path = require('path')
-const render = require('../private/server').appToString
-const Store = require('../src/store')
+import favicon from 'serve-favicon'
+import hbs from 'hbs'
+import logger from 'morgan'
+import path from 'path'
+
+import { appToString as render } from '../private/server'
+import { configureStore } from '../src/store'
 
 const app = express()
 const port = process.env.PORT || '3000'
@@ -28,14 +29,14 @@ module.exports = (() => {
     const baseUrl = `/${req.url.split('/')[1].split('?')[0]}`
     let markup
 
-    const store = Store.init({ test: { testValue: 420 } })
-    console.log('Store! ', Store)
-    console.log('store! ', store)
+    const store = configureStore({ test: { testValue: 420 } })
 
     // this is where async work could be done before page is served
 
-    const initialState = store.getStore().getState()
-    const isoReduxMarkup = `<script>window.__INITIAL_STATE__ = initialState</script>`
+    const initialState = store.getState()
+    const isoReduxMarkup = `<script>window.__INITIAL_STATE__ = ${JSON.stringify(
+      initialState
+    )}</script>`
 
     try {
       markup = render(req.url, {})

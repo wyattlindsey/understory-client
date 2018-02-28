@@ -1,2 +1,2 @@
-require('babel-core/register')
+require('babel-core/register')({ presets: ['env', 'react', 'react-app'] })
 require('./server')

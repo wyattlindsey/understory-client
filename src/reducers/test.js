@@ -1,5 +1,5 @@
-import { createReducer } from 'lib/redux/reducer'
-import { ACTIONS as TEST_ACTIONS } from 'actions/test'
+import { createReducer } from '../lib/redux/reducer'
+import { ACTIONS as TEST_ACTIONS } from '../actions/test'
 
 const initialState = {
   testValue: 2,

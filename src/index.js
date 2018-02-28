@@ -9,9 +9,9 @@ import reducers from 'reducers'
 
 // doesn't initialize on server-side render
 const store =
-  typeof window !== 'undefined'
-    ? window.__INITIAL_STATE__ || Store.init(reducers)
-    : Store.init(reducers)
+  typeof window !== 'undefined' && process.NODE_ENV === 'production'
+    ? Store.init(JSON.parse(window.__INITIAL_STATE__))
+    : Store.init()
 
 const Root = props => (
   <Provider store={store}>
