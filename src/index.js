@@ -8,7 +8,10 @@ import App from 'components/App'
 import reducers from 'reducers'
 
 // doesn't initialize on server-side render
-const store = Store.init(reducers) || { getState: () => initialState }
+const store =
+  typeof window !== 'undefined'
+    ? window.__INITIAL_STATE__ || Store.init(reducers)
+    : Store.init(reducers)
 
 const Root = props => (
   <Provider store={store}>
