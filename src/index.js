@@ -5,13 +5,13 @@ import { Provider } from 'react-redux'
 import Store, { initialState } from 'store'
 import App from 'components/App'
 
-import reducers from 'reducers'
+import reducers from './reducers'
 
 // doesn't initialize on server-side render
 const store =
   typeof window !== 'undefined' && process.NODE_ENV === 'production'
-    ? Store.init(JSON.parse(window.__INITIAL_STATE__))
-    : Store.init()
+    ? Store.init(JSON.parse(window.__INITIAL_STATE__), reducers)
+    : Store.init(initialState, reducers)
 
 const Root = props => (
   <Provider store={store}>

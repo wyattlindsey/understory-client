@@ -8,7 +8,8 @@ import logger from 'morgan'
 import path from 'path'
 
 import { appToString as render } from '../private/server'
-import { configureStore } from '../src/store'
+import Store, { configureStore } from '../src/store'
+import reducers from '../src/reducers'
 
 const app = express()
 const port = process.env.PORT || '3000'
@@ -29,21 +30,23 @@ module.exports = (() => {
     const baseUrl = `/${req.url.split('/')[1].split('?')[0]}`
     let markup
 
-    const store = configureStore({ test: { testValue: 420 } })
+    const hardCodedInitialState = { test: { testValue: 420 } }
+    const store = Store.init(hardCodedInitialState, reducers)
 
     // this is where async work could be done before page is served
 
-    const initialState = store.getState()
-    const isoReduxMarkup = `<script>window.__INITIAL_STATE__ = ${JSON.stringify(
-      initialState
-    )}</script>`
+    // const initialState = store.getState()
+    const scripts = `<script>window.__INITIAL_STATE__ = ${JSON.stringify(
+      store.getState()
+    )}</script>
+      <script type="text/javascript" src="assets/js/bundle.js" defer></script>`
 
     try {
       markup = render(req.url, {})
       res.render('index', {
         isDev: process.env.NODE_ENV === 'development',
         isProd: process.env.NODE_ENV === 'production',
-        isoReduxMarkup,
+        scripts,
         markup,
       })
     } catch (e) {

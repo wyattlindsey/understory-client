@@ -2,15 +2,13 @@ import { createLogger } from 'redux-logger'
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import immutableStateInvariant from 'redux-immutable-state-invariant'
 
-import reducers from '../reducers'
-
 export const initialState = {
   test: {
     testValue: 43,
   },
 }
 
-export const configureStore = (state = initialState) => {
+export const configureStore = (state = initialState, reducers) => {
   const middlewares = []
 
   if (process.env.NODE_ENV !== 'production') {
@@ -40,8 +38,8 @@ export const configureStore = (state = initialState) => {
 }
 
 class Store {
-  init(initialState) {
-    this.store = configureStore(initialState)
+  init(initialState, reducers) {
+    this.store = configureStore(initialState, reducers)
     return this.store
   }
 
