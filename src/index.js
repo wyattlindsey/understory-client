@@ -22,11 +22,11 @@ const Root = props => (
 if (typeof window !== 'undefined') {
   ReactDOM.render(Root(), document.getElementById('root'))
 
-  // if (module.hot) {
-  //   module.hot.accept('components/App', () => {
-  //     ReactDOM.render(Root(), document.getElementById('root'))
-  //   })
-  // }
+  if (module.hot) {
+    module.hot.accept('components/App', () => {
+      ReactDOM.render(Root(), document.getElementById('root'))
+    })
+  }
 }
 
 export default Root

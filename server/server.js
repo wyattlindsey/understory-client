@@ -8,7 +8,7 @@ import logger from 'morgan'
 import path from 'path'
 
 import { appToString as render } from '../private/server'
-import Store, { configureStore } from '../src/store'
+import Store, { initialState } from '../src/store'
 import reducers from '../src/reducers'
 
 const app = express()
@@ -27,15 +27,12 @@ module.exports = (() => {
   hbs.registerPartials(path.resolve(__dirname, '../src/partials'))
 
   app.get('/', (req, res, next) => {
-    const baseUrl = `/${req.url.split('/')[1].split('?')[0]}`
     let markup
 
-    const hardCodedInitialState = { test: { testValue: 420 } }
-    const store = Store.init(hardCodedInitialState, reducers)
+    const store = Store.init(initialState, reducers)
 
     // this is where async work could be done before page is served
 
-    // const initialState = store.getState()
     const scripts = `<script>window.__INITIAL_STATE__ = ${JSON.stringify(
       store.getState()
     )}</script>

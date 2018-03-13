@@ -4,7 +4,7 @@ import immutableStateInvariant from 'redux-immutable-state-invariant'
 
 export const initialState = {
   test: {
-    testValue: 43,
+    testValue: 420,
   },
 }
 
