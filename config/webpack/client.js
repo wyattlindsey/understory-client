@@ -1,8 +1,8 @@
 'use strict'
 
 const path = require('path')
-const hbs = require('hbs')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin')
@@ -49,6 +49,17 @@ module.exports = {
         options: {
           limit: 10000,
           name: 'assets/media/[name].[hash:8].[ext]',
+        },
+      },
+      {
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        loader: require.resolve('eslint-loader'),
+        exclude: path.resolve(__dirname, '../../node_modules'),
+        options: {
+          configFile: path.resolve(__dirname, '../../.eslintrc.js'),
+          emitWarning: true,
+          formatter: eslintFormatter,
         },
       },
       {
