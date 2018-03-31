@@ -85,6 +85,7 @@
     "three": "^0.89.0",
     "url-loader": "^0.6.2",
     "webpack": "^4.4.1",
+    "webpack-cli": "^2.0.13",
     "webpack-dev-server": "^3.1.1",
     "whatwg-fetch": "^2.0.3"
   }
