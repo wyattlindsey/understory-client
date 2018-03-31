@@ -27,10 +27,10 @@ export const configureStore = (state = initialState, reducers) => {
         })
       )
     )
-  }
 
-  // Log state changes
-  middlewares.push(applyMiddleware(createLogger({ collapsed: true })))
+    // Log state changes
+    middlewares.push(applyMiddleware(createLogger({ collapsed: true })))
+  }
 
   const combinedReducers = combineReducers({ ...reducers })
 
