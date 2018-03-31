@@ -53,4 +53,11 @@ module.exports = {
   },
   plugins: ['import', 'react'],
   extends: ['react-app', 'plugin:import/errors', 'plugin:import/warnings'],
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: 'config/webpack/client.js',
+      },
+    },
+  },
 }
