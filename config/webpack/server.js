@@ -9,6 +9,7 @@ const cssLocalName = isProduction
 
 module.exports = {
   context: path.resolve(__dirname, '../../src'),
+  mode: isProduction ? 'production' : 'development',
   target: 'node',
   node: {
     __dirname: true,

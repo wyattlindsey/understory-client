@@ -5,6 +5,7 @@ module.exports = {
   },
   rules: {
     'eol-last': 'warn',
+    'jsx-a11y/href-no-hash': 'off',
     'no-alert': 'warn',
     'no-case-declarations': 'warn',
     'no-cond-assign': 'error',
@@ -26,7 +27,6 @@ module.exports = {
     'prefer-template': 'warn',
     'require-await': 'warn',
     yoda: 'warn',
-
     'import/no-unresolved': 'error',
 
     'react/jsx-no-duplicate-props': 'warn',
@@ -51,7 +51,7 @@ module.exports = {
 
     strict: 0,
   },
-  plugins: ['import', 'react'],
+  plugins: ['import', 'jsx-a11y', 'react'],
   extends: ['react-app', 'plugin:import/errors', 'plugin:import/warnings'],
   settings: {
     'import/resolver': {
