@@ -13,6 +13,7 @@ const cssLocalName = isProduction
   : '[path][name]__[local]--[hash:base64:5]'
 
 module.exports = {
+  mode: isProduction ? 'production' : 'development',
   context: path.resolve(__dirname, '../../src'),
   devServer: {
     contentBase: path.resolve(__dirname, '../../dist'),
