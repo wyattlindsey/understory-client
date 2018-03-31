@@ -48,7 +48,7 @@ class Store {
   }
 
   getHistory() {
-    return history
+    return history // eslint-disable-line no-restricted-globals
   }
 
   dispatch(...args) {

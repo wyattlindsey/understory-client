@@ -4,12 +4,12 @@ export const ACTIONS = {
 
 export const testAction = testParam => {
   return {
-    type: ACTIONS.TEST_ACTION,
     testParam,
+    type: ACTIONS.TEST_ACTION,
   }
 }
 
 export default {
-  testAction,
   ACTIONS,
+  testAction,
 }

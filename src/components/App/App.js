@@ -4,7 +4,7 @@ import styles from './App.css'
 
 import Routes from 'routes'
 
-class App extends React.Component {
+class App extends React.PureComponent {
   render() {
     return (
       <div>

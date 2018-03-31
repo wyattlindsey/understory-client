@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-class SubComponent extends React.Component {
+class SubComponent extends React.PureComponent {
   static propTypes = {
-    test: PropTypes.number,
+    test: PropTypes.number.isRequired,
   }
 
   render() {
