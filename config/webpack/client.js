@@ -4,6 +4,7 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin')
 
@@ -69,7 +70,10 @@ module.exports = {
         loader: require.resolve('babel-loader'),
         options: {
           cacheDirectory: true,
-          presets: [require.resolve('babel-preset-react-app')],
+          presets: [
+            require.resolve('babel-preset-react-app'),
+            require.resolve('babel-preset-flow'),
+          ],
         },
       },
       {
@@ -114,6 +118,7 @@ module.exports = {
       },
     ]),
     new ExtractTextPlugin('assets/css/[name].bundle.css'),
+    new FlowBabelWebpackPlugin(),
     new HtmlWebpackPlugin({
       excludeAssets: isProduction && [/(.*).js$/],
       template: '../public/index.html',

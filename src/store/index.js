@@ -1,3 +1,5 @@
+// @flow
+
 import { createLogger } from 'redux-logger'
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import immutableStateInvariant from 'redux-immutable-state-invariant'

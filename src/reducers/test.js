@@ -1,3 +1,5 @@
+// @flow
+
 import { createReducer } from '../lib/redux/reducer'
 import { ACTIONS as TEST_ACTIONS } from '../actions/test'
 

@@ -1,5 +1,6 @@
 'use strict'
 
+const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin')
 const path = require('path')
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -60,7 +61,10 @@ module.exports = {
         exclude: /node_modules/,
         loader: require.resolve('babel-loader'),
         options: {
-          presets: [require.resolve('babel-preset-react-app')],
+          presets: [
+            require.resolve('babel-preset-react-app'),
+            require.resolve('babel-preset-flow'),
+          ],
         },
       },
       {
@@ -81,5 +85,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [],
+  plugins: [new FlowBabelWebpackPlugin()],
 }

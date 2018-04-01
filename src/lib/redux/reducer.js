@@ -1,3 +1,5 @@
+// @flow
+
 export const createReducer = (initialState = {}, actionHandlers = {}) => {
   return (state = initialState, action) => {
     if (typeof actionHandlers[action.type] === 'function') {
