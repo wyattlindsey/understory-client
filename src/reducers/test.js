@@ -3,12 +3,18 @@
 import { createReducer } from '../lib/redux/reducer'
 import { ACTIONS as TEST_ACTIONS } from '../actions/test'
 
-const initialState = {
+import type { Action as TestAction } from '../actions/test'
+
+export type State = {
+  +testValue: number,
+}
+
+const initialState: State = {
   testValue: 2,
 }
 
 const actions = {
-  [TEST_ACTIONS.TEST_ACTION]: (state, action) => {
+  [TEST_ACTIONS.TEST_ACTION]: (state: State, action: TestAction): State => {
     return {
       ...state,
       testValue: action.testParam,

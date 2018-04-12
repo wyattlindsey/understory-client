@@ -7,8 +7,8 @@ type Props = {
   test: number,
 }
 
-class SubComponent extends React.PureComponent<Props> {
-  render(): React.Node {
+class SubComponent extends React.PureComponent<Props, void> {
+  render() {
     return <div>{this.props.test}</div>
   }
 }
