@@ -1,15 +1,14 @@
 // @flow
 
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 import { connect } from 'react-redux'
 
-class SubComponent extends React.PureComponent {
-  static propTypes = {
-    test: PropTypes.number.isRequired,
-  }
+type Props = {
+  test: number,
+}
 
-  render() {
+class SubComponent extends React.PureComponent<Props> {
+  render(): React.Node {
     return <div>{this.props.test}</div>
   }
 }

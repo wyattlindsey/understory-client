@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { BrowserRouter, Route, StaticRouter, Switch } from 'react-router-dom'
 

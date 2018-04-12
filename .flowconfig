@@ -1,11 +1,12 @@
 [ignore]
-.*/config/.*
 .*/dist/.*
-.*/node_modules/.*
+.*/__mocks__/.*
+.*/es2015/.*
 
 [include]
 
 [libs]
+flow-typed
 
 [lints]
 all=warn

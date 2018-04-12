@@ -1,5 +1,3 @@
-// @flow
-
 import { renderToString } from 'react-dom/cjs/react-dom-server.node.production.min'
 
 import Root from 'index'
