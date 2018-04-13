@@ -9,18 +9,15 @@
   "scripts": {
     "build": "yarn build:client; yarn build:server",
     "build:prod": "export NODE_ENV=production; yarn build",
-    "build:client":
-      "export NODE_ENV=production; webpack --config config/webpack/client.js",
-    "build:server":
-      "export NODE_ENV=production; webpack --config config/webpack/server.js",
+    "build:client": "export NODE_ENV=production; webpack --config config/webpack/client.js",
+    "build:server": "export NODE_ENV=production; webpack --config config/webpack/server.js",
     "serve:dev": "export NODE_ENV=development; nodemon ./server/index.js",
     "serve:prod": "export NODE_ENV=production; node ./server/index.js",
     "start": "yarn serve:prod",
-    "start:dev":
-      "export NODE_ENV=development; webpack-dev-server --config config/webpack/client.js",
+    "start:dev": "export NODE_ENV=development; webpack-dev-server --config config/webpack/client.js",
     "start:prod": "export NODE_ENV=production; yarn build; yarn serve:prod",
     "heroku-postbuild": "yarn build:prod",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -107,8 +104,21 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-redux": "^0.2.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
     "react-test-renderer": "^16.3.1",
     "redux-test-utils": "^0.2.2"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "babelrc": false,
+        "presets": [
+          "es2015",
+          "stage-2",
+          "react"
+        ]
+      }
+    }
   }
 }
