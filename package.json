@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "frontend for understory application",
   "engines": {
-    "node": ">=6.9.1"
+    "node": ">=6.11.5"
   },
   "main": "server/index.js",
   "scripts": {
