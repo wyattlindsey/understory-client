@@ -2,6 +2,8 @@
 .*/dist/.*
 .*/__mocks__/.*
 .*/es2015/.*
+.*/material-ui/.*.js.flow
+.*/jss/.*.js.flow
 
 [include]
 

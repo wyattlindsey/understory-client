@@ -3,10 +3,10 @@ import React from 'react'
 import cssModules from 'react-css-modules'
 import styles from './main.css'
 
-
 import Store from 'store'
 import { testAction } from 'actions/test'
 
+import Button from 'material-ui/Button'
 import SubComponent from 'components/SubComponent'
 
 class Main extends React.Component {
@@ -17,8 +17,9 @@ class Main extends React.Component {
   render() {
     return (
       <div onClick={this.handleClick} styleName="test">
-        Hello Understory!!!
-        <SubComponent />
+        <Button variant="raised">
+          <SubComponent />
+        </Button>
       </div>
     )
   }
