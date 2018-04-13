@@ -89,7 +89,7 @@
     "redux": "^3.7.2",
     "redux-immutable-state-invariant": "^2.1.0",
     "redux-logger": "^3.0.6",
-    "serve-favicon": "^2.4.5",
+    "serve-favicon": "^2.5.0",
     "style-loader": "^0.20.3",
     "three": "^0.91.0",
     "url-loader": "^1.0.1",
