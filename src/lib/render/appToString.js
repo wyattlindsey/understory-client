@@ -1,4 +1,4 @@
-import { renderToString } from 'react-dom/cjs/react-dom-server.node.production.min'
+import { renderToString } from 'react-dom/server'
 
 import Root from 'index'
 
