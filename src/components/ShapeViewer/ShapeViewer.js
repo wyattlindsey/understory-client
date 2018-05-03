@@ -29,9 +29,9 @@ class ShapeViewer extends React.PureComponent<Props, State> {
 
   onAnimate = () => {
     const { x, y } = this.state.cubeRotation
-    // this.setState({
-    //   cubeRotation: new THREE.Euler(x + 0.1, y + 0.1),
-    // })
+    this.setState({
+      cubeRotation: new THREE.Euler(x + 0.1, y + 0.1),
+    })
   }
 
   /* eslint-enable no-invalid-this */
@@ -49,31 +49,29 @@ class ShapeViewer extends React.PureComponent<Props, State> {
     const { width } = this.props
     const height = 512
 
-    return (
-      width && (
-        <React3
-          height={height}
-          mainCamera="camera"
-          onAnimate={this.onAnimate}
-          width={width}
-        >
-          <scene>
-            <perspectiveCamera
-              aspect={width / height}
-              far={1000}
-              fov={75}
-              name="camera"
-              near={0.1}
-              position={this.cameraPosition}
-            />
-            <mesh rotation={this.state.cubeRotation}>
-              <boxGeometry depth={1} height={1} width={1} />
-              <meshBasicMaterial color={0x88ff88} />
-            </mesh>
-          </scene>
-        </React3>
-      )
-    )
+    return width ? (
+      <React3
+        height={height}
+        mainCamera="camera"
+        onAnimate={this.onAnimate}
+        width={width}
+      >
+        <scene>
+          <perspectiveCamera
+            aspect={width / height}
+            far={1000}
+            fov={75}
+            name="camera"
+            near={0.1}
+            position={this.cameraPosition}
+          />
+          <mesh rotation={this.state.cubeRotation}>
+            <boxGeometry depth={1} height={1} width={1} />
+            <meshBasicMaterial color={0x88ff88} />
+          </mesh>
+        </scene>
+      </React3>
+    ) : null
   }
 }
 
