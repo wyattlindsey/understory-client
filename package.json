@@ -35,6 +35,8 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-replace-object-assign": "^1.0.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-airbnb": "^2.4.0",
     "babel-preset-env": "^1.6.1",
@@ -102,8 +104,6 @@
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-replace-object-assign": "^1.0.0",
     "create-react-class": "^15.6.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-15": "^1.0.5",
