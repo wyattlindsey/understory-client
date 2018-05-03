@@ -1,72 +1,45 @@
+// @flow
+
 import React from 'react'
 
 import cssModules from 'react-css-modules'
 import styles from './main.css'
 
-import Store from 'store'
-import { testAction } from 'actions/test'
+import Grid from 'material-ui/Grid'
+import Typography from 'material-ui/Typography'
 
-import Button from 'material-ui/Button'
-import SubComponent from 'components/SubComponent'
-import React3 from 'react-three-renderer'
-import * as THREE from 'three'
+import ShapeViewer from 'components/ShapeViewer'
 
-class Main extends React.Component {
+type State = {
+  width: number | null,
+}
+
+class Main extends React.Component<void, State> {
   state = {
-    cubeRotation: new THREE.Euler(),
+    width: null,
   }
 
-  /* eslint-disable no-invalid-this */
-
-  onAnimate = () => {
-    const { x, y } = this.state.cubeRotation
-    this.setState({
-      cubeRotation: new THREE.Euler(x + 0.1, y + 0.1),
-    })
-  }
-
-  /* eslint-enable no-invalid-this */
-
-  get cameraPosition() {
-    if (!this._cameraPosition) this._cameraPosition = new THREE.Vector3(1, 1, 5)
-    return this._cameraPosition
-  }
-
-  handleClick = () => {
-    Store.dispatch(testAction(Math.random() * 100))
+  componentDidMount() {
+    const width = this.shapeViewerRef.clientWidth
+    this.setState({ width })
   }
 
   render() {
-    const width = 500
-    const height = 500
-
     return (
-      <div onClick={this.handleClick} styleName="test">
-        <Button color="primary" variant="raised">
-          Test
-        </Button>
-        <SubComponent />
-        <React3
-          height={height}
-          mainCamera="camera"
-          onAnimate={this.onAnimate}
-          width={width}
-        >
-          <scene>
-            <perspectiveCamera
-              aspect={width / height}
-              far={1000}
-              fov={75}
-              name="camera"
-              near={0.1}
-              position={this.cameraPosition}
-            />
-            <mesh rotation={this.state.cubeRotation}>
-              <boxGeometry depth={1} height={1} width={1} />
-              <meshBasicMaterial color={0x88ff88} />
-            </mesh>
-          </scene>
-        </React3>
+      <div>
+        <Grid alignItems="center" container direction="column">
+          <Typography gutterBottom variant="display3">
+            Universal React Redux ThreeJS
+          </Typography>
+          <div
+            ref={c => {
+              this.shapeViewerRef = c
+            }}
+            styleName="shape-viewer"
+          >
+            <ShapeViewer width={this.state.width} />
+          </div>
+        </Grid>
       </div>
     )
   }
