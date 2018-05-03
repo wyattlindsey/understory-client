@@ -47,6 +47,7 @@
     "chalk": "^2.3.0",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
+    "dot-prop": "^4.2.0",
     "eslint": "^4.18.2",
     "eslint-config-react-app": "^2.1.0",
     "eslint-import-resolver-webpack": "^0.9.0",
