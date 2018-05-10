@@ -82,6 +82,7 @@
     "promise": "^8.0.1",
     "prop-types": "^15.6.0",
     "react": "^15.6.1",
+    "react-async-component": "^2.0.0",
     "react-css-modules": "^4.7.1",
     "react-dev-utils": "^5.0.0",
     "react-dom": "^15.6.1",
