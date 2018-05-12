@@ -82,6 +82,7 @@ class ThreeViewport extends React.Component<Props, State> {
             aspect={width / height}
             far={1000}
             fov={75}
+            lookAt={this.scenePosition}
             name="camera"
             near={0.1}
             position={this.cameraPosition}

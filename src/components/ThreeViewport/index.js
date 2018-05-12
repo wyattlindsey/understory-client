@@ -1,9 +1,9 @@
-import * as React from 'react'
 import { asyncComponent } from 'react-async-component'
-import { CircularProgress } from 'material-ui/Progress'
+
+import LoadingIndicator from './LoadingIndicator'
 
 const asyncShapeViewer = asyncComponent({
-  LoadingComponent: () => <CircularProgress />,
+  LoadingComponent: LoadingIndicator,
   name: 'ShapeViewer',
   resolve: () => System.import('./ThreeViewport'),
   serverMode: 'defer',
