@@ -5,7 +5,7 @@ import { CircularProgress } from 'material-ui/Progress'
 const asyncShapeViewer = asyncComponent({
   LoadingComponent: () => <CircularProgress />,
   name: 'ShapeViewer',
-  resolve: () => System.import('./ShapeViewer'),
+  resolve: () => System.import('./ThreeViewport'),
   serverMode: 'defer',
 })
 

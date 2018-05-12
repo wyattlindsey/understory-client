@@ -8,17 +8,19 @@ import { testAction } from 'actions/test'
 import React3 from 'react-three-renderer'
 import * as THREE from 'three'
 
+import ShapeViewport from 'components/ShapeViewport'
+
 type Props = {
   width: number | null,
 }
 
 type State = {
-  cubeRotation: { x: number, y: number, z: number, order: string },
+  shouldUpdate: boolean,
 }
 
-class ShapeViewer extends React.PureComponent<Props, State> {
+class ThreeViewport extends React.Component<Props, State> {
   state = {
-    cubeRotation: new THREE.Euler(),
+    shouldUpdate: false,
   }
 
   static defaultProps = {
@@ -26,12 +28,18 @@ class ShapeViewer extends React.PureComponent<Props, State> {
   }
 
   /* eslint-disable no-invalid-this */
-
   onAnimate = () => {
-    const { x, y } = this.state.cubeRotation
-    this.setState({
-      cubeRotation: new THREE.Euler(x + 0.1, y + 0.1),
-    })
+    if (!this.state.shouldUpdate) {
+      this.setState({
+        shouldUpdate: true,
+      })
+
+      setTimeout(() => {
+        this.setState({
+          shouldUpdate: false,
+        })
+      }, 17)
+    }
   }
 
   /* eslint-enable no-invalid-this */
@@ -65,14 +73,11 @@ class ShapeViewer extends React.PureComponent<Props, State> {
             near={0.1}
             position={this.cameraPosition}
           />
-          <mesh rotation={this.state.cubeRotation}>
-            <boxGeometry depth={1} height={1} width={1} />
-            <meshBasicMaterial color={0x88ff88} />
-          </mesh>
+          <ShapeViewport shouldUpdate={this.state.shouldUpdate} />
         </scene>
       </React3>
     ) : null
   }
 }
 
-export default ShapeViewer
+export default ThreeViewport

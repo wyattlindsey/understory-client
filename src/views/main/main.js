@@ -1,4 +1,3 @@
-
 import React from 'react'
 import cssModules from 'react-css-modules'
 import styles from './main.css'
@@ -6,7 +5,7 @@ import styles from './main.css'
 import Grid from 'material-ui/Grid'
 import Typography from 'material-ui/Typography'
 
-import ShapeViewer from 'components/ShapeViewer'
+import ThreeViewport from 'components/ThreeViewport'
 
 import debounce from 'lodash/debounce'
 
@@ -53,7 +52,7 @@ class Main extends React.Component<void, State> {
             }}
             styleName="shape-viewer"
           >
-            <ShapeViewer width={this.state.width} />
+            <ThreeViewport width={this.state.width} />
           </div>
         </Grid>
       </div>
