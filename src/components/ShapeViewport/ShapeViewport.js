@@ -33,7 +33,7 @@ class ShapeViewport extends React.PureComponent<Props, State> {
     return (
       <mesh rotation={this.state.cubeRotation}>
         <boxGeometry depth={1} height={1} width={1} />
-        <meshBasicMaterial color={0x88ff88} />
+        <meshStandardMaterial color={0x88ff88} />
       </mesh>
     )
   }
