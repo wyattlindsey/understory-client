@@ -1,12 +1,10 @@
 // @flow
 
 import React from 'react'
-
-import Store from 'store'
-import { testAction } from 'actions/test'
-
 import React3 from 'react-three-renderer'
 import * as THREE from 'three'
+
+import throttle from 'lodash/throttle'
 
 import ShapeViewport from 'components/ShapeViewport'
 
@@ -18,6 +16,8 @@ type State = {
   shouldUpdate: boolean,
 }
 
+const MAX_FRAME_RATE = 60
+
 class ThreeViewport extends React.Component<Props, State> {
   state = {
     shouldUpdate: false,
@@ -28,29 +28,31 @@ class ThreeViewport extends React.Component<Props, State> {
   }
 
   /* eslint-disable no-invalid-this */
-  onAnimate = () => {
-    if (!this.state.shouldUpdate) {
-      this.setState({
-        shouldUpdate: true,
-      })
 
-      setTimeout(() => {
-        this.setState({
-          shouldUpdate: false,
-        })
-      }, 17)
-    }
+  onAnimate = () => {
+    this.toggleShouldUpdate()
   }
+
+  toggleShouldUpdate = throttle(
+    () => {
+      this.setState(state => {
+        return {
+          ...state,
+          shouldUpdate: !state.shouldUpdate,
+        }
+      })
+    },
+    1000 / MAX_FRAME_RATE,
+    {
+      trailing: false,
+    }
+  )
 
   /* eslint-enable no-invalid-this */
 
   get cameraPosition() {
     if (!this._cameraPosition) this._cameraPosition = new THREE.Vector3(1, 1, 5)
     return this._cameraPosition
-  }
-
-  handleClick = () => {
-    Store.dispatch(testAction(Math.random() * 100))
   }
 
   render() {
