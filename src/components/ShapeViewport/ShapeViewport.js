@@ -1,40 +1,55 @@
 // @flow
 
-import React from 'react'
+import * as React from 'react'
 import * as THREE from 'three'
+import Store from 'store'
+import isEqual from 'lodash/isEqual'
+
+import Shapes from './shapes'
+
+import type { Color } from 'types/shape'
 
 type Props = {
   shouldUpdate: boolean,
 }
 
 type State = {
-  cubeRotation: { x: number, y: number, z: number, order: string },
+  color: Color,
+  shapeRotation: { x: number, y: number, z: number, order: string },
 }
 
 class ShapeViewport extends React.PureComponent<Props, State> {
   state = {
-    cubeRotation: new THREE.Euler(),
+    color: { r: 10, g: 200, b: 10, a: 1 },
+    shapeRotation: new THREE.Euler(),
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (!prevProps.shouldUpdate && this.props.shouldUpdate) {
       this.animate()
+    }
+    const color = Store.getStore().getState().shape.color
+
+    if (!isEqual(prevState.color && color)) {
+      this.setState({ color })
     }
   }
 
   animate() {
-    const { x, y } = this.state.cubeRotation
+    const { x, y } = this.state.shapeRotation
     this.setState({
-      cubeRotation: new THREE.Euler(x + 0.1, y + 0.1),
+      shapeRotation: new THREE.Euler(x + 0.1, y + 0.1),
     })
   }
 
   render() {
+    const { r, g, b } = this.state.color
+
     return (
-      <mesh rotation={this.state.cubeRotation}>
-        <boxGeometry depth={1} height={1} width={1} />
-        <meshStandardMaterial color={0x88ff88} />
-      </mesh>
+      <Shapes.Cube
+        color={new THREE.Color(`rgb(${r}, ${g}, ${b})`)}
+        rotation={this.state.shapeRotation}
+      />
     )
   }
 }

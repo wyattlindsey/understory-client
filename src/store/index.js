@@ -3,15 +3,10 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import immutableStateInvariant from 'redux-immutable-state-invariant'
 
 export const initialState = {
-  test: {
-    testValue: 420,
-  },
+  shape: { color: { r: 10, g: 200, b: 10, a: 1 } },
 }
 
-export const configureStore = (
-  state = initialState,
-  reducers
-) => {
+export const configureStore = (state = initialState, reducers) => {
   const middlewares = []
 
   if (process.env.NODE_ENV !== 'production') {

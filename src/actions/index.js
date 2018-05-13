@@ -1,8 +1,8 @@
-import TestActions from './test'
-import type { Action as TestAction } from './test'
+import ShapeActions from './shape'
+import type { Action as ShapeAction } from './shape'
 
-export type Action = TestAction // | NextAction | AnotherAction, etc.
+export type Action = ShapeAction // | NextAction | AnotherAction, etc.
 
 export default {
-  TestActions,
+  ShapeActions,
 }

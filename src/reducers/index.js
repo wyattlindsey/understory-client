@@ -1,8 +1,8 @@
-import test from './test'
-import type { State as TestState } from './test'
+import shape from './shape'
+import type { State as ShapeState } from './shape'
 
-export type State = { TestState: TestState }
+export type State = { ShapeState: ShapeState }
 
 export default {
-  test,
+  shape,
 }
