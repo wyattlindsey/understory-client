@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/wyattlindsey/understory-client#readme",
   "dependencies": {
+    "@material-ui/core": "^1.0.0-rc.0",
     "autoprefixer": "^7.2.5",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -69,7 +70,6 @@
     "html-webpack-exclude-assets-plugin": "^0.0.7",
     "html-webpack-plugin": "^3.2.0",
     "lodash": "^4.17.10",
-    "material-ui": "next",
     "morgan": "^1.9.0",
     "nodemon": "^1.14.12",
     "object-assign": "^4.1.1",

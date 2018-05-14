@@ -1,5 +1,11 @@
 @import 'styles/variables';
 
+.wrapper {
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+}
+
 .shape-viewer {
   width: 100%;
 }
