@@ -1,3 +1,5 @@
+// @flow
+
 import { asyncComponent } from 'react-async-component'
 
 import LoadingIndicator from './LoadingIndicator'
