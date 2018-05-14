@@ -3,12 +3,3 @@
 .shape-viewer {
   width: 100%;
 }
-
-.test {
-  composes: userselect-none from 'styles/box.css';
-  font-size: $test-font-size;
-}
-
-.anotherClass {
-  font-size: 98rem;
-}

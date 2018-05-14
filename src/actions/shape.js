@@ -8,7 +8,7 @@ export const ACTIONS = {
 
 type SetColor = {
   color: Color,
-  type: 'TEST_ACTION',
+  type: 'SET_COLOR',
 }
 
 export type Action = SetColor // | NextAction | AnotherAction, etc.
