@@ -1,14 +1,12 @@
 // @flow
 
-import { asyncComponent } from 'react-async-component'
+import Loadable from 'react-loadable'
 
 import LoadingIndicator from './LoadingIndicator'
 
-const asyncShapeViewer = asyncComponent({
-  LoadingComponent: LoadingIndicator,
-  name: 'ShapeViewer',
-  resolve: () => System.import('./ThreeViewport'),
-  serverMode: 'defer',
+const asyncShapeViewer = Loadable({
+  loader: () => System.import('./ThreeViewport'),
+  loading: LoadingIndicator,
 })
 
 export default asyncShapeViewer
