@@ -40,6 +40,7 @@ module.exports = (() => {
 
     try {
       markup = render(req.url, {})
+      const css =
       res.render('index', {
         isDev: process.env.NODE_ENV === 'development',
         isProd: process.env.NODE_ENV === 'production',
