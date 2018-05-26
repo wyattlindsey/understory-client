@@ -30,6 +30,8 @@ class Main extends React.Component<Props, State> {
     width: null,
   }
 
+  shapeViewerRef: ?HTMLElement
+
   componentDidMount() {
     const width = this.shapeViewerRef.clientWidth
     this.setState({ width })

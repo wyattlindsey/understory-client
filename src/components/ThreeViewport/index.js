@@ -7,7 +7,7 @@ import LoadingIndicator from './LoadingIndicator'
 const asyncThreeViewport = asyncComponent({
   LoadingComponent: LoadingIndicator,
   name: 'ThreeViewport',
-  resolve: () => System.import('./ThreeViewport').then(m => m.default),
+  resolve: () => System.import('./ThreeViewport'),
   serverMode: 'defer',
 })
 

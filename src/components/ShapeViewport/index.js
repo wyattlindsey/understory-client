@@ -10,4 +10,6 @@ const asyncShapeViewport = asyncComponent({
   serverMode: 'defer',
 })
 
-export default asyncShapeViewport
+// export default asyncShapeViewport
+
+export { default } from './ShapeViewport'
