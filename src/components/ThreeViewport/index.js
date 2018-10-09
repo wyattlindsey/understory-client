@@ -9,9 +9,7 @@ const asyncThreeViewport = asyncComponent({
   name: 'ThreeViewport',
   resolve: () => {
     return new Promise(resolve => {
-      setTimeout(() => {
-        import('./ThreeViewport').then(m => resolve(m))
-      }, 4000)
+      import('./ThreeViewport').then(m => resolve(m))
     })
   },
   serverMode: 'defer',
